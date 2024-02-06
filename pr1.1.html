@@ -1,7 +1,6 @@
-
-
-
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route Finder</title>
@@ -16,11 +15,12 @@
         }
 
         h1 {
+            font-family: 'Forte', cursive; /* Apply Forte font family */
             color: #0074cc;
         }
 
         .hero {
-            background-image: url('https://images.unsplash.com/photo-1433838552652-f9a46b332c40?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D.jpg');
+            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190220/ourmid/pngtree-simple-summer-tourism-travel-image_9073.jpg');
             background-size: cover;
             background-position: center;
             color: #fff;
@@ -76,57 +76,58 @@
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #4169E1;
             color: #fff;
             transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #4169E1;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Route Finder</h1>
-    </header>
+<header>
+    <h1>Route Finder</h1> <!-- Forte style applied to "Route Finder" -->
+</header>
 
-    <div class="tab">
-        <button class="tablinks" onclick="openTab('train')">Train</button>
-        <button class="tablinks" onclick="openTab('flight')">Flight</button>
-        <button class="tablinks" onclick="openTab('bus ')">Bus</button>
-        <button class="tablinks" onclick="openTab('car')">Car</button>
-        <button class="tablinks" onclick="openTab('best route')">best route</button>
+<div class="tab">
+    <button class="tablinks" onclick="openTab('train')">Train</button>
+    <button class="tablinks" onclick="openTab('flight')">Flight</button>
+    <button class="tablinks" onclick="openTab('bus ')">Bus</button>
+    <button class="tablinks" onclick="openTab('car')">Car</button>
+    <button class="tablinks" onclick="openTab('Best route')">Best route</button>
+</div>
+
+<div class="hero" id="heroSection">
+    <div class="search-bar">
+        <pre>            <input type="text" placeholder="Enter starting city">
+            <input type="text" placeholder="Enter destination city">
+            <input type="date" id="travelDate">
+
+        </pre>
+       
+
+        <label for="select route ">select route</label>
+<select id="select_route" name="select route" required>
+  <option value="bus">BUS </option>
+  <option value="train">TRAIN </option>
+  <option value="flight ">FLIGHT </option>
+  <option value=" car "> CAR   </option>
+  <option value=" Bestroute  ">BY ANY MODE </option>
+ 
+</select>  
+        
+        <button>Find Route</button>
     </div>
+</div>
 
-    <div class="hero" id="heroSection">
-        <div class="search-bar">
-            <pre>                <input type="text" placeholder="Enter starting city">
-                <input type="text" placeholder="Enter destination city">
-                <input type="date" id="travelDate">
-
-            </pre>
-           
-
-            <label for="select route ">select route</label>
-    <select id="select_route" name="select route" required>
-      <option value="bus">BUS </option>
-      <option value="train">TRAIN </option>
-      <option value="flight ">FLIGHT </option>
-      <option value=" car "> CAR   </option>
-      <option value=" bestroute  ">BY ANY MODE </option>
-     
-    </select>  
-            
-            <button>Find Route</button>
-        </div>
-    </div>
-
-    <script>
-        function openTab(tabName) {
-            // Add logic to handle tab switching if needed
-        }
-    </script>
+<script>
+    function openTab(tabName) {
+        // Add logic to handle tab switching if needed
+    }
+</script>
 
 
-</body></html>
+</body>
+</html>
