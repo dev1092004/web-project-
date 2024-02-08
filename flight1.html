@@ -16,8 +16,8 @@
     <nav>
         <div class="nav__logo">Flight </div>
         <ul class="nav__links">
-          <li class="link"><a href="#">Home</a></li>
-          <li class="link"><a href="#">About</a></li>
+          <li class="link"><a href="pr1.1.html">Home</a></li>
+          <li class="link"><a href="#footer">About</a></li>
           <li class="link"><a href="#">Offers</a></li>
           <li class="link"><a href="#">Seats</a></li>
           <li class="link"><a href="#">Destinations</a></li>
@@ -109,7 +109,7 @@
 <BR>
     <br>
             <BR>
-
+<div id="footer">  
             <footer class="footer">
                 <div class="section__container footer__container">
                   <div class="footer__col">
@@ -124,6 +124,11 @@
                       world, ensuring safe, comfortable, and unforgettable experiences.
                     </p>
                   </div>
+
+
+
+
+                  
                   <div class="footer__col">
                     <h4>INFORMATION</h4>
                     <p>Home</p>
@@ -150,8 +155,14 @@
                 </div>
               </footer>          
     
-            
-
+            </div>
+              <script>
+                // JavaScript code to handle scrolling to the bottom
+                document.querySelector('a[href="#footer"]').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector('#footer').scrollIntoView({ behavior: 'smooth' });
+                });
+            </script>
 
 </body>
 </html>
