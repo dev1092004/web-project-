@@ -1,133 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route Finder</title>
     <style>
-        /* Your existing styles */
-
-        header {
-            background-color: #333;
-            color: #444;
-            padding: 10px;
-            text-align: center;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
+
+        .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    
+    color: #fff;
+}
+
 
         h1 {
-            font-family: 'Forte', cursive; /* Apply Forte font family */
-            color: #0074cc;
+            color: #333;
+            margin-bottom: 20px;
         }
 
-        .hero {
-            background-image: url('https://i.pinimg.com/736x/a7/3c/bf/a73cbfbcf18054bf31ee42e6453c5d94.jpg');
-            background-size: cover;
-            background-position: center;
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .option {
+            width: 200px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .option h2 {
+            color: #333;
+        }
+
+        .option p {
+            color: #666;
+        }
+
+        .option a {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
             color: #fff;
-            text-align: center;
-            padding: 100px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .option a:hover {
+            background-color: #0056b3;
+        }
+
+        .tabs {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
         }
 
         .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #000; /* Black color for the tabs */
-        }
-
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-            font-size: 17px;
-            color: #fff; /* Text color for the tabs */
-        }
-
-        .tab button:hover {
-            background-color: #333; /* Darker color on hover */
-        }
-
-        .tab button.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .search-bar {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        input[type="text"],
-        input[type="date"],
-        select,
-        button {
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        input[type="date"] {
-            width: 70%;
-        }
-
-        button {
-            background-color: #4169E1;
+            padding: 10px 20px;
+            background-color: #007bff;
             color: #fff;
-            transition: background-color 0.3s;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
-        button:hover {
-            background-color: #4169E1;
+        .tab:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer__container {
+            display: grid;
+            grid-template-columns: 2fr repeat(2, 1fr);
+            gap: 5rem;
+            min-width: 200px; /* Set minimum width */
+            margin-top: 20px;
+        }
+
+        .footer__col h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .footer__col h4 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .footer__col p {
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .footer__col p:hover {
+            color: #ccc;
+        }
+
+        .footer__bar {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border-top: 1px solid #666;
+            margin-top: 20px;
+        }
+
+        .footer__bar p {
+            font-size: 0.9rem;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .socials span {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .footer__container {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer__col {
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <h1>Route Finder</h1> <!-- Forte style applied to "Route Finder" -->
-</header>
 
-<div class="tab">
-    <button class="tablinks" onclick="openTab('train')">Train</button>
-    <button class="tablinks" onclick="openTab('flight')">Flight</button>
-    <button class="tablinks" onclick="openTab('bus ')">Bus</button>
-    <button class="tablinks" onclick="openTab('car')">Car</button>
-    <button class="tablinks" onclick="openTab('Best route')">Best route</button>
-</div>
-
-<div class="hero" id="heroSection">
-    <div class="search-bar">
-        <pre>            <input type="text" placeholder="Enter starting city">
-            <input type="text" placeholder="Enter destination city">
-            <input type="date" id="travelDate">
-
-        </pre>
-       
-
-        <label for="select route ">select route</label>
-<select id="select_route" name="select route" required>
-  <option value="bus">BUS </option>
-  <option value="train">TRAIN </option>
-  <option value="flight ">FLIGHT </option>
-  <option value=" car "> CAR   </option>
-  <option value=" Bestroute  ">BY ANY MODE </option>
- 
-</select>  
-        
-        <button>Find Route</button>
+    <div class="container">
+        <div class="background-image">
+            <img src="C:/Users/Devansh/Downloads/blue-location-pin-sign-icon-gps-navigation-map-road-direction-internet-search-bar-technology-symbol-position-place-background-with-find-route-mark-travel-destination-navigator-3d-rendering_79161-1996 (1).avif" alt="Background Image">
+        </div>
+                <div class="tabs">
+            <a href="#" class="tab">About</a>
+            <a href="#" class="tab">Contact</a>
+        </div>
+        <h1>Find Your Route</h1>
+        <p>Welcome to Route Finder, your one-stop solution for finding routes via flight, train, bus, and car.</p>
+        <div class="options">
+          
+            <div class="option">
+                <h2>Flight</h2>
+                <p>Find routes via flights</p>
+                <a href="#">Search Flights</a>
+            </div>
+            <div class="option">
+                <h2>Train</h2>
+                <p>Find routes via trains</p>
+                <a href="#">Search Trains</a>
+            </div>
+            <div class="option">
+                <h2>Bus</h2>
+                <p>Find routes via buses</p>
+                <a href="pr3.1.html">Search Buses</a>
+            </div>
+            <div class="option">
+                <h2>Car</h2>
+                <p>Find routes via car</p>
+                <a href="#">Search Car Routes</a>
+            </div>
+        </div>
     </div>
-</div>
-
-<script>
-    function openTab(tabName) {
-        // Add logic to handle tab switching if needed
-    }
-</script>
-
-
-</body>
-</html>
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__col">
+                <h3>FLIGHT booking</h3>
+                <p>
+                    AK-47
+                </p>
+                <p>
+                    From friendly smiles to state-of-the-art aircraft, we connect the
+                    world, ensuring safe, comfortable, and unforgettable experiences.
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>INFORMATION</h4>
+                <p>Home</p>
+                <p>About</p>
+                <p>Offers</p>
+                <p>Seats</p>
+                <p>Destinations</p>
+            </div>
+            <div class="footer__col">
+                <h4>CONTACT</h4>
+                <p>Support</p>
+                <p>Media</p>
+                <p>Socials</p>
+            </div>
+        </div>
+        <div class="footer__bar">
+            <p>Copyright © 2023</p>
+            <div class="socials">
+                <span><i class="ri-facebook-fill"></i></span>
+                <span><i class="ri-twitter-fill"></i></span>
+                <span><i class="ri-instagram-line"></i></span>
+               
