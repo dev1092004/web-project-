@@ -1,1 +1,60 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+            background-color: #333; /* Set background color */
+            color: #fff; /* Set text color to white for better visibility on the background */
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        #box {
+            font-size: 2em;
+            border: 2px solid #fff;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.2); /* Set a semi-transparent white background for better readability */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Under Construction</h1>
+    <p>This page is currently under construction. We apologize for any inconvenience.</p>
+
+    <div id="box"></div>
+
+    <script>
+        // Live Date and Time Box
+        function updateBox() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateBox, 1000);
+    </script>
+</body>
+
+</html>
