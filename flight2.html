@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Finder</title>
+    <link rel="stylesheet" href="flight1.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            font-family: 'Poppins', sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        #box {
+            font-size: 2em;
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" />
+            </div>
+            <div class="form-group">
+                <label for="travellers">Travellers</label>
+                <input type="number" id="travellers" />
+            </div>
+            <div class="form-group">
+                <label for="departure">Departure</label>
+                <input type="text" id="departure" />
+            </div>
+            <div class="form-group">
+                <label for="return">Return</label>
+                <input type="text" id="return" />
+            </div>
+            <button class="btn"><i class="ri-search-line"></i> Search Flights</button>
+        </div>
+
+        <h1>Flight Finder</h1>
+        <p>Welcome to our Flight Finder. Plan your journey hassle-free!</p>
+
+        <div id="box"></div>
+    </div>
+
+    <script>
+        // Live Date and Time Box
+        function updateBox() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateBox, 1000);
+    </script>
+</body>
+
+</html>
