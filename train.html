@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planner</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            background-color: #222;
+            padding: 10px;
+            text-align: center;
+            font-size: 2em;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 60%;
+            margin-top: 80px;
+        }
+
+        .background-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .background-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .form-container {
+            text-align: left;
+            margin-left: 20px;
+            width: 50%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #4CAF50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #box {
+            font-size: 2em;
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            margin: 20px 0;
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #fff;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 80%;
+            }
+
+            .background-image,
+            .form-container {
+                width: 100%;
+            }
+
+            .background-image {
+                order: -1;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        TRAIN ROUTE FINDER
+    </header>
+    <div class="container">
+        <div class="background-image">
+            <img src="https://img.freepik.com/free-photo/cinematic-steam-train-railroad-background_1409-5628.jpg?size=626&ext=jpg">
+        </div>
+        <div class="form-container">
+            <form action="/planRoute" method="get">
+                <div class="form-group">
+                    <label for="startPoint">FROM :</label>
+                    <input type="text" name="startPoint" id="startPoint" placeholder="Enter starting point" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endPoint">TO:</label>
+                    <input type="text" name="endPoint" id="endPoint" placeholder="Enter ending point" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" name="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Time:</label>
+                    <input type="time" name="time" id="time" required>
+                </div>
+
+                <button type="submit" class="btn">Plan Route</button>
+            </form>
+        </div>
+    </div>
+    <h1>Train route  Finder</h1>
+    <p>Welcome to our train finder. Plan your train  journey hassle-free!</p>
+    <div id="box"></div>
+
+    <script>
+        // Live Date and Time Box
+        function updateBox() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = now.toLocaleDateString('en-US', options);
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateBox, 1000);
+    </script>
+</body>
+
+</html>
