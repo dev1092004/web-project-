@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Route Planner</title>
+    <title>Car Route Planner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
     <style>
         body {
             text-align: center;
-            padding: 0;
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #333;
-            color: #fff;
+            background-color: #f2f2f2;
+            color: #333;
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -20,8 +20,9 @@
 
         header {
             width: 100%;
-            background-color: #222;
-            padding: 10px;
+            background-color: #FF6347; /* Tomato color */
+            color: white;
+            padding: 0px;
             text-align: center;
             font-size: 2em;
             position: fixed;
@@ -29,28 +30,71 @@
             z-index: 1000;
         }
 
-        .container {
+        .container-wrapper {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 60%;
+            flex-direction: column;
+            width: 80%;
             margin-top: 80px;
         }
 
         .background-image {
-            flex: 1;
-            max-width: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://example.com/car_animation.gif') repeat; /* Replace with your car animation URL */
+            animation: animateBackground 10s linear infinite reverse; /* Direction reversed */
+            z-index: -1;
         }
 
-        .background-image img {
-            width: 100%;
+        @keyframes animateBackground {
+            0% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0% 0;
+            }
+        }
+
+        .car {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 50px; /* Adjust the car width as needed */
             height: auto;
+            animation: moveCar 10s linear infinite; /* Adjust animation duration as needed */
+            z-index: 999;
+        }
+
+        @keyframes moveCar {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: 100%;
+            }
         }
 
         .form-container {
             text-align: left;
-            margin-left: 20px;
-            width: 50%;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            animation: slideInFromLeft 1s ease-in-out;
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .form-group {
@@ -60,63 +104,56 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #4CAF50;
+            font-weight: 500;
         }
 
-        .form-group input {
+        .form-group input,
+        .form-group select {
             width: 100%;
             padding: 10px;
-            border: 2px solid #4CAF50;
+            border: 1px solid #FF6347; /* Change color to Tomato */
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0); /* Transparent background */
         }
 
         .btn {
-            background-color: #4CAF50;
+            background-color: #FF6347; /* Tomato color */
             color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
+            font-size: 16px;
         }
 
         #box {
-            font-size: 2em;
-            border: 2px solid #4CAF50;
+            font-size: 1.2em;
+            border: 2px solid #ffffff;
             padding: 10px;
             margin: 20px 0;
-            background-color: rgba(76, 175, 80, 0.2);
-            color: #fff;
+            color: #FF6347; /* Tomato color */
+            border-radius: 5px;
         }
 
-        /* Media Query for smaller screens */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                width: 80%;
-            }
+        h1 {
+            color: #FF6347; /* Tomato color */
+        }
 
-            .background-image,
-            .form-container {
-                width: 100%;
-            }
-
-            .background-image {
-                order: -1;
-                max-width: 100%;
-            }
+        p {
+            font-size: 18px;
         }
     </style>
 </head>
 
 <body>
     <header>
-        CAR ROUTE FINDER
+        CarRoutePlanner
     </header>
-    <div class="container">
-        <div class="background-image">
-            <img src="https://plus.unsplash.com/premium_photo-1661368395765-bbdb789dce12?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cm9hZCUyMHRyaXB8ZW58MHx8MHx8fDA=">
-        </div>
+    <div class="container-wrapper">
+        <div class="background-image"></div>
+        <div class="car"></div> <!-- Add the car element -->
         <div class="form-container">
             <form action="/planRoute" method="get">
                 <div class="form-group">
@@ -129,14 +166,17 @@
                     <input type="text" name="endPoint" id="endPoint" placeholder="Enter ending point" required>
                 </div>
 
-
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" name="date" id="date" required>
+                </div>
 
                 <button type="submit" class="btn">Plan Route</button>
             </form>
         </div>
     </div>
-    <h1>Car  route  Finder</h1>
-    <p>Welcome to our Car route  finder. Plan your car  journey hassle-free!</p>
+    <h1>CarRoutePlanner</h1>
+    <p>"CarRoutePlanner: Your Pathway to Hassle-Free Driving!"</p>
     <div id="box"></div>
 
     <script>
