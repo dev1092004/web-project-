@@ -4,27 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Route Planner</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
+    <title>WarpWaveBus</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;display=swap">
     <style>
         body {
-            text-align: center;
+            box-sizing: inherit;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #f2f2f2;
-            color: #333;
-            display: flex;
+            padding: 0;
+            height: 100vh;
             align-items: center;
-            flex-direction: column;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            font-size: 15px;
+            background: #eee;
+            text-align: center;
+            color: #333;
         }
 
         header {
             width: 100%;
             background-color: #3f51b5;
             color: white;
-            padding: 0px;
+            padding: 1em;
             text-align: center;
-            font-size: 2em;
+            font-size: 1.5em;
             position: fixed;
             top: 0;
             z-index: 1000;
@@ -34,81 +44,89 @@
             display: flex;
             flex-direction: column;
             width: 80%;
-            margin-top: 80px;
+            margin-top: 80px; /* Adjusted margin-top */
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
         .background-image {
+            /* Updated background properties */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://cdn.dribbble.com/users/1928873/screenshots/6456745/bus_animation.gif') repeat;
-            animation: animateBackground 10s linear infinite reverse; /* Direction reversed */
+            background: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzfGVufDB8fDB8fHww') center/cover no-repeat;
             z-index: -1;
-        }
-
-        @keyframes animateBackground {
-            0% {
-                background-position: 100% 0;
-            }
-            100% {
-                background-position: 0% 0;
-            }
         }
 
         .form-container {
             text-align: left;
-            margin-top: 20px;
             padding: 20px;
-            border-radius: 10px;
-            width: 100%;
-            
-            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            border-radius: 20px;
+            width: 50%; /* Full width */
+            max-height: 70vh;
+            overflow-y: auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 20px; /* Reduced margin-bottom */
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .form-group label {
-            display: block;
+            flex: 1;
             margin-bottom: 5px;
             font-weight: 500;
+            text-align: right;
+            padding-right: 20px;
         }
 
         .form-group input,
         .form-group select {
-            width: 100%;
+            flex: 2;
+            width: calc(100% - 20px);
             padding: 10px;
-            border: 1px solid skyblue; /* Change color to sky blue */
+            border: 1px solid #3f51b5;
             border-radius: 5px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            background-color: #fff;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
 
         .btn {
             background-color: #3f51b5;
-            color: aqua;
+            color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        #swapBtn {
+            background-color: #8bc34a; /* Updated button color */
         }
 
         #box {
             font-size: 1.2em;
-            border: 2px solid #ffffff;
+            border: 2px solid #3f51b5;
             padding: 10px;
             margin: 20px 0;
             color: #3f51b5;
             border-radius: 5px;
-        }
-
-        h1 {
-            color: #3f51b5;
         }
 
         p {
@@ -127,26 +145,28 @@
             <form action="/planRoute" method="get">
                 <div class="form-group">
                     <label for="startPoint">FROM :</label>
-                    <input type="text" name="startPoint" id="startPoint" placeholder="Enter starting point" required>
+                    <input type="text" name="startPoint" id="startPoint" placeholder="Enter starting point" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="endPoint">TO:</label>
-                    <input type="text" name="endPoint" id="endPoint" placeholder="Enter ending point" required>
+                    <input type="text" name="endPoint" id="endPoint" placeholder="Enter ending point" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="date">Date:</label>
-                    <input type="date" name="date" id="date" required>
+                    <input type="date" name="date" id="date" required="">
                 </div>
 
-                <button type="submit" class="btn">Plan Route</button>
+                <div class="btn-container">
+                    <button type="submit" class="btn">Plan Route</button>
+                    <button type="button" class="btn" id="swapBtn" onclick="swapInputs('startPoint', 'endPoint')">Swap</button>
+                </div>
             </form>
         </div>
     </div>
-    <h1>WarpWaveBus</h1>
     <p>"WarpWaveBus: Your Pathway to Seamless Travel!"</p>
-    <div id="box"></div>
+    <div id="box"> Saturday, February 24, 2024 01:25:43</div>
 
     <script>
         // Live Date and Time Box
@@ -159,6 +179,15 @@
             const seconds = now.getSeconds().toString().padStart(2, '0');
 
             document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+        }
+
+        function swapInputs(input1Id, input2Id) {
+            const input1 = document.getElementById(input1Id);
+            const input2 = document.getElementById(input2Id);
+
+            const tempValue = input1.value;
+            input1.value = input2.value;
+            input2.value = tempValue;
         }
 
         setInterval(updateBox, 1000);
