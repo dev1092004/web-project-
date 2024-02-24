@@ -1,167 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Route Planner</title>
+<html><head>
+    <title>Map</title>
+ <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         body {
-            text-align: center;
-            padding: 0;
+            background-image: url("https://wallpapercave.com/wp/wp12183315.jpg");
+            background-size: 104% auto; 
+            
+            width: 100%;
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: #333;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+            padding: 0;
         }
 
-        header {
+        #map {
+            height: 400px;
             width: 100%;
-            background-color: #222;
-            padding: 10px;
-            text-align: center;
-            font-size: 2em;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 60%;
-            margin-top: 80px;
-        }
-
-        .background-image {
-            flex: 1;
-            max-width: 50%;
-        }
-
-        .background-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        .form-container {
-            text-align: left;
-            margin-left: 20px;
-            width: 50%;
-        }
-
-        .form-group {
             margin-bottom: 20px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #4CAF50;
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
         }
 
-        .form-group input {
-            width: 100%;
+        input[type="text"] {
+            width: calc(50% - 5px);
             padding: 10px;
-            border: 2px solid #4CAF50;
+            margin: 5px;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
+            font-size: 16px;
         }
 
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+        input[type="submit"] {
+            width: calc(50% - 5px);
+            padding: 10px;
+            margin: 5px;
             border: none;
-            cursor: pointer;
             border-radius: 5px;
-        }
-
-        #box {
-            font-size: 2em;
-            border: 2px solid #4CAF50;
-            padding: 10px;
-            margin: 20px 0;
-            background-color: rgba(76, 175, 80, 0.2);
+            background-color: #999999;
             color: #fff;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        /* Media Query for smaller screens */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                width: 80%;
-            }
-
-            .background-image,
-            .form-container {
-                width: 100%;
-            }
-
-            .background-image {
-                order: -1;
-                max-width: 100%;
-            }
+        input[type="submit"]:hover {
+            background-color: blue;
         }
+
+        .header {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .header a {
+            color: #fff;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        #time {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            font-size: 20px;
+        }
+ .map1{
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 
 <body>
-    <header>
-        TRAIN ROUTE FINDER
-    </header>
-    <div class="container">
-        <div class="background-image">
-            <img src="https://img.freepik.com/free-photo/cinematic-steam-train-railroad-background_1409-5628.jpg?size=626&ext=jpg">
-        </div>
-        <div class="form-container">
-            <form action="/planRoute" method="get">
-                <div class="form-group">
-                    <label for="startPoint">FROM :</label>
-                    <input type="text" name="startPoint" id="startPoint" placeholder="Enter starting point" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="endPoint">TO:</label>
-                    <input type="text" name="endPoint" id="endPoint" placeholder="Enter ending point" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Date:</label>
-                    <input type="date" name="date" id="date" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="time">Time:</label>
-                    <input type="time" name="time" id="time" required>
-                </div>
-
-                <button type="submit" class="btn">Plan Route</button>
-            </form>
-        </div>
+    <div class="header">
+        <a>Home</a>
+        <a href="https://www.irctc.co.in/nget/train-search">About Us</a>
+        
+ <div class="map1">
+        <h2>Contact Us</h2>
+        <p>Location: Dehradun</p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3431.727417354153!2d78.03215601514253!3d30.31649468179108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39094a2f23b008c5%3A0x419e9a58217ef57c!2sDehradun%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1644536255451!5m2!1sen!2sin" width="500" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <h1>Train route  Finder</h1>
-    <p>Welcome to our train finder. Plan your train  journey hassle-free!</p>
-    <div id="box"></div>
+    </div>
+    <div id="map"></div>
+    <form id="directions-form">
+        <input type="text" id="start" placeholder="Enter Current Location">
+        <input type="text" id="end" placeholder="Enter Destination">
+        <input type="submit">
+    </form>
+<select id="date">
+            <option value="1">1</option>
+            <option value="2">2</option>
+<option value="3">3</option>
+
+
+<option value="4">4</option>
+
+<option value="5">5</option>
+
+<option value="6">6</option>
+
+<option value="7">7</option>
+<option value="8">8</option>
+
+<option value="9">9</option>
+<option value="10">10</option>
+
+<option value="11">11</option>
+
+<option value="12">12</option>
+
+<option value="13">13</option>
+
+<option value="14">14</option>
+<option value="15">15</option>
+
+<option value="16">16</option>
+
+<option value="17">17</option>
+
+<option value="18">18</option>
+
+<option value="19">19</option>
+
+
+<option value="20">20</option>
+<option value="21">21</option>
+
+<option value="22">22</option>
+
+<option value="23">23</option>
+
+<option value="24">2</option>
+
+
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+
+
+
+
+
+
+          
+        </select>
+        <select id="month">
+            <option value="January">January</option>
+            <option value="February">February</option>
+<option value="March">March</option>
+<option value="April">April</option>
+<option value="May">May</option>
+<option value="June">June</option>
+<option value="July">July</option>
+<option value="August">August</option>
+<option value="September">September</option>
+
+<option value="October">October</option>
+
+
+<option value="November">November</option>
+
+
+<option value="December">December</option>
+
+            
+        </select>
+        <select id="year">
+            <option value="2024">2024</option>
+            
+        </select>
+
+    <div id="time">10:8:47</div>
+
+
 
     <script>
-        // Live Date and Time Box
-        function updateBox() {
-            const now = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = now.toLocaleDateString('en-US', options);
-            const hours = now.getHours().toString().padStart(2, '0');
-            const minutes = now.getMinutes().toString().padStart(2, '0');
-            const seconds = now.getSeconds().toString().padStart(2, '0');
-
-            document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            document.getElementById('time').textContent = hours + ":" + minutes + ":" + seconds;
         }
 
-        setInterval(updateBox, 1000);
-    </script>
-</body>
+        updateTime(); 
 
-</html>
+        
+        setInterval(updateTime, 1000);
+    </script>
+
+
+
+
+</body></html>
