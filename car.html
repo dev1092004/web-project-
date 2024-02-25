@@ -7,27 +7,73 @@
     <title>Car Route Planner</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap">
     <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             text-align: center;
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #f2f2f2;
             color: #333;
             display: flex;
             align-items: center;
             flex-direction: column;
+            background: rgba(156, 153, 153, 0.9) url('https://images5.alphacoders.com/133/1330753.png') repeat;
+            background-size: cover;
         }
 
         header {
             width: 100%;
-            background-color: #FF6347; /* Tomato color */
+            background-color: #14172d;
             color: white;
-            padding: 0px;
+         
             text-align: center;
             font-size: 2em;
             position: fixed;
-            top: 0;
+            top: 5;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        .menu-options {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .menu-options a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .menu-options a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .menu-options.visible {
+            display: block;
         }
 
         .container-wrapper {
@@ -39,12 +85,12 @@
 
         .background-image {
             position: fixed;
-            top: 0;
+            top: 50;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://example.com/car_animation.gif') repeat; /* Replace with your car animation URL */
-            animation: animateBackground 10s linear infinite reverse; /* Direction reversed */
+            background: url('https://example.com/car_animation.gif') repeat;
+            animation: animateBackground 10s linear infinite reverse;
             z-index: -1;
         }
 
@@ -52,6 +98,7 @@
             0% {
                 background-position: 100% 0;
             }
+
             100% {
                 background-position: 0% 0;
             }
@@ -61,9 +108,9 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            width: 50px; /* Adjust the car width as needed */
+            width: 50px;
             height: auto;
-            animation: moveCar 10s linear infinite; /* Adjust animation duration as needed */
+            animation: moveCar 10s linear infinite;
             z-index: 999;
         }
 
@@ -71,6 +118,7 @@
             0% {
                 left: 0;
             }
+
             100% {
                 left: 100%;
             }
@@ -78,19 +126,23 @@
 
         .form-container {
             text-align: left;
-            margin-top: 20px;
+            margin-top: 100px;
             padding: 20px;
             border-radius: 10px;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0); /* Transparent background */
-            animation: slideInFromLeft 1s ease-in-out;
+            width: 300px;
+            background-color: #c4eeee; /* Green color */
+            animation: slideInFromRight 1s ease-in-out;
+            position: fixed;
+            top: 20px;
+            right: 20px;
         }
 
-        @keyframes slideInFromLeft {
+        @keyframes slideInFromRight {
             0% {
                 opacity: 0;
-                transform: translateX(-20px);
+                transform: translateX(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateX(0);
@@ -105,21 +157,23 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
+            color: rgb(138, 158, 66);
         }
 
         .form-group input,
         .form-group select {
             width: 100%;
             padding: 10px;
-            border: 1px solid #FF6347; /* Change color to Tomato */
+            border: 0.5px solid #FF6347;
             border-radius: 5px;
             box-sizing: border-box;
             font-size: 16px;
-            background-color: rgba(0, 0, 0, 0); /* Transparent background */
+            background-color: rgba(234, 11, 200, 0);
+            color: #333;
         }
 
         .btn {
-            background-color: #FF6347; /* Tomato color */
+            background-color: #FF6347;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -129,31 +183,51 @@
         }
 
         #box {
-            font-size: 1.2em;
+            font-size: 0.5em;
             border: 2px solid #ffffff;
             padding: 10px;
             margin: 20px 0;
-            color: #FF6347; /* Tomato color */
+            color: #0f0e0e;
             border-radius: 5px;
         }
 
         h1 {
-            color: #FF6347; /* Tomato color */
+            color: #FF6347;
         }
 
         p {
             font-size: 18px;
         }
+        
+        footer {
+            background-color: #331f1c;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 1000;
+        }
+
     </style>
 </head>
 
 <body>
     <header>
-        CarRoutePlanner
+        CarNavigator Pro
+      
+       
     </header>
+    
+    <div class="menu-options" id="menuOptions">
+        <a href="http://www.ncw.nic.in/helplines">Women Helpline</a>
+        <a href="https://indianhelpline.com/child-helpline">Child Helpline</a>
+        <!-- Add more options as needed -->
+    </div>
     <div class="container-wrapper">
         <div class="background-image"></div>
-        <div class="car"></div> <!-- Add the car element -->
+        <div class="car"></div>
         <div class="form-container">
             <form action="/planRoute" method="get">
                 <div class="form-group">
@@ -179,6 +253,10 @@
     <p>"CarRoutePlanner: Your Pathway to Hassle-Free Driving!"</p>
     <div id="box"></div>
 
+    <footer>
+        &copy; 2024 CarRoutePlanner. All rights reserved.
+    </footer>
+
     <script>
         // Live Date and Time Box
         function updateBox() {
@@ -190,10 +268,21 @@
             const seconds = now.getSeconds().toString().padStart(2, '0');
 
             document.getElementById("box").innerHTML = ` ${formattedDate} ${hours}:${minutes}:${seconds}`;
+            document.getElementById("time-box").innerHTML = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function toggleMenu() {
+            const menuOptions = document.getElementById("menuOptions");
+            menuOptions.classList.toggle("visible");
         }
 
         setInterval(updateBox, 1000);
     </script>
+
+
+<footer>
+    <p> &copy; 2024 AEROROUTE. All rights reserved. </p>
+</footer>
 </body>
 
 </html>
